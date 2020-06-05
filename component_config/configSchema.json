@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "title": "configuration",
+  "required": [
+    "#api_token",
+    "#src_token",
+    "aws_region"
+  ],
+  "properties": {
+    "#api_token": {
+      "type": "string",
+      "title": "Manage token",
+      "format": "password",
+      "propertyOrder": 200
+    },
+    "#src_token": {
+      "type": "string",
+      "title": "Source project token",
+      "propertyOrder": 300
+    },
+    "aws_region": {
+      "type": "string",
+      "title": "Region",
+      "propertyOrder": 500,
+      "default": "US"
+    }
+  }
+}
