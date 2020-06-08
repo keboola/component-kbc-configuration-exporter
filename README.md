@@ -1,8 +1,8 @@
 # KBC Component
 
-Generates projects of specified types for users defined in table: `users.csv` with cols (`["email","name"]`)
+Transfers configs to projects defined in the table: 
+`configs.csv` with cols (`["project_id","config_id", "component_id"]`)
 
-Invites users.
 
 Outputs table `transferred_configs_log` (`['project_id', 'region', 'src_cfg_id', 'dst_cfg_id', 'component_id', 'time']`)
 
