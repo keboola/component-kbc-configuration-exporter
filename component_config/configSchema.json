@@ -17,6 +17,7 @@
     "#src_token": {
       "type": "string",
       "title": "Source project token",
+      "format": "password",
       "propertyOrder": 300
     },
     "aws_region": {
