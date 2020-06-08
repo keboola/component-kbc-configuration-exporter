@@ -72,7 +72,8 @@ class Component(KBCEnvHandler):
                 project_id = cfg['project_id']
                 token = self._get_project_storage_token(params[KEY_API_TOKEN], project_id, region=dst_region)
                 logging.info(
-                    f'Transferring {cfg["component_id"]} cfg {cfg["configuration_id"]} into project {cfg["project_id"]}')
+                    f'Transferring {cfg["component_id"]} cfg {cfg["configuration_id"]} '
+                    f'into project {cfg["project_id"]}')
                 if cfg['component_id'] != 'orchestrator':
                     result_id = cfg['configuration_id']
                     transferred = kbcapi_scripts.migrate_configs(params[KEY_SRC_TOKEN], token['token'],
