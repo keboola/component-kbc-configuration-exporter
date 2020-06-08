@@ -72,11 +72,11 @@ class Component(KBCEnvHandler):
                 project_id = cfg['project_id']
                 token = self._get_project_storage_token(params[KEY_API_TOKEN], project_id, region=dst_region)
                 logging.info(
-                    f'Transferring {cfg["component_id"]} cfg {cfg["config_id"]} into project {cfg["project_id"]}')
+                    f'Transferring {cfg["component_id"]} cfg {cfg["configuration_id"]} into project {cfg["project_id"]}')
                 if cfg['component_id'] != 'orchestrator':
-                    result_id = cfg['config_id']
+                    result_id = cfg['configuration_id']
                     transferred = kbcapi_scripts.migrate_configs(params[KEY_SRC_TOKEN], token['token'],
-                                                                 cfg['config_id'],
+                                                                 cfg['configuration_id'],
                                                                  cfg['component_id'],
                                                                  src_region=src_region,
                                                                  dst_region=dst_region,
@@ -84,14 +84,14 @@ class Component(KBCEnvHandler):
 
                 else:
                     o = kbcapi_scripts.clone_orchestration(params[KEY_SRC_TOKEN], token['token'], src_region,
-                                                           dst_region, cfg['config_id'])
+                                                           dst_region, cfg['configuration_id'])
                     result_id = o['id']
                     transferred = True
 
             if transferred:
                 writer.writerow({'project_id': project_id,
                                  'region': 'EU',
-                                 'src_cfg_id': cfg['config_id'],
+                                 'src_cfg_id': cfg['configuration_id'],
                                  'dst_cfg_id': result_id,
                                  'component_id': cfg['component_id'],
                                  'time': datetime.datetime.utcnow().isoformat()})
