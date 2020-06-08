@@ -4,7 +4,8 @@
   "required": [
     "#api_token",
     "#src_token",
-    "aws_region"
+    "aws_region",
+    "dst_aws_region"
   ],
   "properties": {
     "#api_token": {
@@ -20,8 +21,14 @@
     },
     "aws_region": {
       "type": "string",
-      "title": "Region",
+      "title": "Source Region",
       "propertyOrder": 500,
+      "default": "US"
+    },
+    "dst_aws_region": {
+      "type": "string",
+      "title": "Destination Region",
+      "propertyOrder": 600,
       "default": "US"
     }
   }

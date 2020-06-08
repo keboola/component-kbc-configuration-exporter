@@ -18,10 +18,11 @@ KEY_SRC_TOKEN = '#src_token'
 PAR_CONFIG_LISTS = 'configs.csv'
 KEY_API_TOKEN = '#api_token'
 KEY_REGION = 'aws_region'
+KEY_DST_REGION = 'dst_aws_region'
 # #### Keep for debug
 KEY_DEBUG = 'debug'
 
-MANDATORY_PARS = [KEY_API_TOKEN, KEY_SRC_TOKEN, KEY_REGION]
+MANDATORY_PARS = [KEY_API_TOKEN, KEY_SRC_TOKEN, KEY_REGION, KEY_DST_REGION]
 MANDATORY_IMAGE_PARS = []
 
 APP_VERSION = '0.0.1'
@@ -54,7 +55,8 @@ class Component(KBCEnvHandler):
         params = self.cfg_params  # noqa
         configs_path = os.path.join(self.tables_in_path, PAR_CONFIG_LISTS)
         out_file_path = os.path.join(self.tables_out_path, 'transferred_configs_log.csv')
-        region = params[KEY_REGION]
+        src_region = params[KEY_REGION]
+        dst_region = params[KEY_DST_REGION]
         if not os.path.exists(configs_path):
             logging.exception(f'The table {PAR_CONFIG_LISTS} must be on input!')
 
@@ -68,7 +70,7 @@ class Component(KBCEnvHandler):
 
             for cfg in reader:
                 project_id = cfg['project_id']
-                token = self._get_project_storage_token(params[KEY_API_TOKEN], project_id, region=region)
+                token = self._get_project_storage_token(params[KEY_API_TOKEN], project_id, region=dst_region)
                 logging.info(
                     f'Transferring {cfg["component_id"]} cfg {cfg["config_id"]} into project {cfg["project_id"]}')
                 if cfg['component_id'] != 'orchestrator':
@@ -76,13 +78,13 @@ class Component(KBCEnvHandler):
                     transferred = kbcapi_scripts.migrate_configs(params[KEY_SRC_TOKEN], token['token'],
                                                                  cfg['config_id'],
                                                                  cfg['component_id'],
-                                                                 src_region=region,
-                                                                 dst_region=region,
+                                                                 src_region=src_region,
+                                                                 dst_region=dst_region,
                                                                  use_src_id=True, fail_on_existing=False)
 
                 else:
-                    o = kbcapi_scripts.clone_orchestration(params[KEY_SRC_TOKEN], token['token'], 'EU', 'EU',
-                                                           cfg['config_id'])
+                    o = kbcapi_scripts.clone_orchestration(params[KEY_SRC_TOKEN], token['token'], src_region,
+                                                           dst_region, cfg['config_id'])
                     result_id = o['id']
                     transferred = True
 
