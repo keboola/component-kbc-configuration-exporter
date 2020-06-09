@@ -89,13 +89,13 @@ class Component(KBCEnvHandler):
                     result_id = o['id']
                     transferred = True
 
-            if transferred:
-                writer.writerow({'project_id': project_id,
-                                 'region': 'EU',
-                                 'src_cfg_id': cfg['configuration_id'],
-                                 'dst_cfg_id': result_id,
-                                 'component_id': cfg['component_id'],
-                                 'time': datetime.datetime.utcnow().isoformat()})
+                if transferred:
+                    writer.writerow({'project_id': project_id,
+                                     'region': 'EU',
+                                     'src_cfg_id': cfg['configuration_id'],
+                                     'dst_cfg_id': result_id,
+                                     'component_id': cfg['component_id'],
+                                     'time': datetime.datetime.utcnow().isoformat()})
 
         self.configuration.write_table_manifest(out_file_path,
                                                 primary_key=['project_id', 'region', 'src_cfg_id', 'dst_cfg_id',
