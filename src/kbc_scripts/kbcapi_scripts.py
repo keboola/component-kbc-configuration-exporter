@@ -374,7 +374,8 @@ def migrate_configs(src_token, dst_token, src_config_id, component_id, src_regio
         row['configuration_id'] = new_cfg['id']
         test = row['configuration'].pop('id', {})
         test = row['configuration'].pop('rowId', {})
-        test = row.pop('rowId', {})
+        if not use_src_id:
+            row.pop('rowId', {})
 
         # add token and region to use wrapping
         row['token'] = dst_token
