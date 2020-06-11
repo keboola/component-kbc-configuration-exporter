@@ -350,7 +350,6 @@ def migrate_configs(src_token, dst_token, src_config_id, component_id, src_regio
             if er.response.status_code != 404:
                 raise er
 
-
     src_config = _get_config_detail(src_token, src_region, component_id, src_config_id)
     src_config_rows = _get_config_rows(src_token, src_region, component_id, src_config_id)
 
@@ -374,8 +373,8 @@ def migrate_configs(src_token, dst_token, src_config_id, component_id, src_regio
         row['configuration_id'] = new_cfg['id']
         test = row['configuration'].pop('id', {})
         test = row['configuration'].pop('rowId', {})
-        if not use_src_id:
-            row.pop('rowId', {})
+        if use_src_id:
+            row['rowId'] = row['id']
 
         # add token and region to use wrapping
         row['token'] = dst_token
