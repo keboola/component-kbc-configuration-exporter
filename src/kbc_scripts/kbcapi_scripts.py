@@ -13,7 +13,8 @@ from kbcstorage.tables import Tables
 # subprocess.call([sys.executable, '-m', 'pip', 'install', 'git+https://github.com/keboola/sapi-python-client.git'])
 
 URL_SUFFIXES = {"US": ".keboola.com",
-                "EU": ".eu-central-1.keboola.com"}
+                "EU": ".eu-central-1.keboola.com",
+                "AZURE-EU": ".north-europe.azure.keboola.com"}
 
 """
 Various Adhoc scripts for KBC api manipulations.
