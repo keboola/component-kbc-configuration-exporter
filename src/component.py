@@ -8,9 +8,8 @@ import datetime
 import logging
 import os
 import sys
-from pathlib import Path
-
 from kbc.env_handler import KBCEnvHandler
+from pathlib import Path
 
 from kbc_scripts import kbcapi_scripts
 
@@ -84,8 +83,11 @@ class Component(KBCEnvHandler):
                 logging.info(
                     f'Transferring {cfg["component_id"]} cfg {cfg["configuration_id"]} '
                     f'into project {cfg["project_id"]}')
-                if cfg['component_id'] != 'orchestrator':
+                if cfg['component_id'] != 'orchestrator-legacy':
                     result_id = cfg['configuration_id']
+                    if cfg['component_id'] == 'flow':
+                        cfg['component_id'] = 'keboola.orchestrator'
+
                     transferred = kbcapi_scripts.migrate_configs(params[KEY_SRC_TOKEN], token['token'],
                                                                  cfg['configuration_id'],
                                                                  cfg['component_id'],

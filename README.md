@@ -13,8 +13,11 @@ Outputs table `transferred_configs_log` (`['project_id', 'region', 'src_cfg_id',
 
 # Functionality notes
 
+Component type `flow` will look for component `keboola.orchestrator`
+
 **NOTE**: One configuration config is not transferred more than once,  
-**EXCEPT** component of type `orchestrator`, which are transferred **each time**
+
+**EXCEPT** component of type `orchestrator-legacy`, which are transferred **each time**
 
 # Configuration
 
