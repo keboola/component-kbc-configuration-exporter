@@ -2,10 +2,12 @@ import json
 import os
 import urllib
 
+import backoff
 import requests
 from kbcstorage.base import Endpoint
 from kbcstorage.buckets import Buckets
 from kbcstorage.tables import Tables
+from requests import HTTPError
 
 # uncomment in sandbox
 # import subprocess
@@ -450,6 +452,7 @@ def invite_user_to_project(token, project_id, email):
         return True
 
 
+@backoff.on_exception(backoff.expo, (HTTPError, requests.ConnectionError), max_tries=3)
 def generate_token(decription, manage_token, proj_id, region, expires_in=1800, manage_tokens=False,
                    additional_params=None):
     headers = {
