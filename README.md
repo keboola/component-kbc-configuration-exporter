@@ -21,9 +21,12 @@ Component type `flow` will look for component `keboola.orchestrator`
 
 # Configuration
 
-## Param 1
-
-## Param 2
+## possible stacks/regions:
+    "US": ".keboola.com",
+    "EU": ".eu-central-1.keboola.com",
+    "AZURE-EU": ".north-europe.azure.keboola.com",
+    "GCP-US": ".us-east4.gcp.keboola.com",
+    "GCP-EU": ".europe-west3.gcp.keboola.com"
 
 
 ## Development
