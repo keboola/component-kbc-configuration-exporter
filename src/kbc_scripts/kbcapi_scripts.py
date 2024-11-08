@@ -16,7 +16,9 @@ from requests import HTTPError
 
 URL_SUFFIXES = {"US": ".keboola.com",
                 "EU": ".eu-central-1.keboola.com",
-                "AZURE-EU": ".north-europe.azure.keboola.com"}
+                "AZURE-EU": ".north-europe.azure.keboola.com",
+                "GCP-US": ".us-east4.gcp.keboola.com",
+                "GCP-EU": ".europe-west3.gcp.keboola.com"}
 
 """
 Various Adhoc scripts for KBC api manipulations.

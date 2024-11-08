@@ -23,6 +23,22 @@
     "aws_region": {
       "type": "string",
       "title": "Source Region",
+      "enum": [
+        "US",
+        "EU",
+        "AZURE-EU",
+        "GCP-US",
+        "GCP-EU"
+      ],
+      "options": {
+        "enum_titles": [
+          "US - .keboola.com",
+          "EU - .eu-central-1.keboola.com",
+          "AZURE-EU - .north-europe.azure.keboola.com",
+          "GCP-US - .us-east4.gcp.keboola.com",
+          "GCP-EU - .europe-west3.gcp.keboola.com"
+        ]
+      },
       "propertyOrder": 500,
       "default": "US"
     },
@@ -30,6 +46,22 @@
       "type": "string",
       "title": "Destination Region",
       "propertyOrder": 600,
+      "enum": [
+        "US",
+        "EU",
+        "AZURE-EU",
+        "GCP-US",
+        "GCP-EU"
+      ],
+      "options": {
+        "enum_titles": [
+          "US - .keboola.com",
+          "EU - .eu-central-1.keboola.com",
+          "AZURE-EU - .north-europe.azure.keboola.com",
+          "GCP-US - .us-east4.gcp.keboola.com",
+          "GCP-EU - .europe-west3.gcp.keboola.com"
+        ]
+      },
       "default": "US"
     }
   }
