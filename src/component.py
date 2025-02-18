@@ -19,6 +19,9 @@ PAR_CONFIG_LISTS = 'configs.csv'
 KEY_API_TOKEN = '#api_token'
 KEY_REGION = 'aws_region'
 KEY_DST_REGION = 'dst_aws_region'
+KEY_CUSTOM_REGION = 'custom_region'
+KEY_CUSTOM_DST_REGION = 'custom_dst_region'
+
 # #### Keep for debug
 KEY_DEBUG = 'debug'
 
@@ -56,6 +59,9 @@ class Component(KBCEnvHandler):
         # get other stacks from image context
 
         kbcapi_scripts.URL_SUFFIXES = {**kbcapi_scripts.URL_SUFFIXES, **self.image_params}
+
+        kbcapi_scripts.set_custom_stack(self.cfg_params.get(KEY_CUSTOM_REGION),
+                                        self.cfg_params.get(KEY_CUSTOM_DST_REGION))
 
     def run(self):
         '''

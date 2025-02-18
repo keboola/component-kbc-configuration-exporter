@@ -25,6 +25,9 @@ Various Adhoc scripts for KBC api manipulations.
 
 """
 
+def set_custom_stack(src: str = None, dest: str = None):
+    URL_SUFFIXES["CUSTOM-SRC"] = src
+    URL_SUFFIXES["CUSTOM-DST"] = dest
 
 def run_config(component_id, config_id, token, region='US'):
     values = {

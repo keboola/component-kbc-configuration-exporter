@@ -28,7 +28,8 @@
         "EU",
         "AZURE-EU",
         "GCP-US",
-        "GCP-EU"
+        "GCP-EU",
+        "CUSTOM-SRC"
       ],
       "options": {
         "enum_titles": [
@@ -36,11 +37,24 @@
           "EU - .eu-central-1.keboola.com",
           "AZURE-EU - .north-europe.azure.keboola.com",
           "GCP-US - .us-east4.gcp.keboola.com",
-          "GCP-EU - .europe-west3.gcp.keboola.com"
+          "GCP-EU - .europe-west3.gcp.keboola.com",
+          "CUSTOM"
         ]
       },
       "propertyOrder": 500,
       "default": "US"
+    },
+    "custom_region": {
+      "type": "string",
+      "title": "Custom Source Region",
+      "default": "",
+      "description": "Custom source region name in the format: .name.keboola.cloud",
+      "options": {
+        "dependencies": {
+          "aws_region": "CUSTOM-SRC"
+        }
+      },
+      "propertyOrder": 550
     },
     "dst_aws_region": {
       "type": "string",
@@ -51,7 +65,8 @@
         "EU",
         "AZURE-EU",
         "GCP-US",
-        "GCP-EU"
+        "GCP-EU",
+        "CUSTOM-DST"
       ],
       "options": {
         "enum_titles": [
@@ -59,10 +74,23 @@
           "EU - .eu-central-1.keboola.com",
           "AZURE-EU - .north-europe.azure.keboola.com",
           "GCP-US - .us-east4.gcp.keboola.com",
-          "GCP-EU - .europe-west3.gcp.keboola.com"
+          "GCP-EU - .europe-west3.gcp.keboola.com",
+          "CUSTOM"
         ]
       },
       "default": "US"
+    },
+    "custom_dst_region": {
+      "type": "string",
+      "title": "Custom Destination Region",
+      "default": "",
+      "description": "Custom destination region in the format: .name.keboola.cloud",
+      "options": {
+        "dependencies": {
+          "dst_aws_region": "CUSTOM-DST"
+        }
+      },
+      "propertyOrder": 650
     }
   }
 }
